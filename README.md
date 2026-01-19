@@ -1,77 +1,83 @@
-# Student Performance Analysis (Exploratory Data Analysis Project)
+# Student Performance Analysis & Grade Prediction (EDA + Machine Learning)
 
 ## Overview
 
-This project analyzes a dataset of 1 million students' academic performance to extract trends and insights. The dataset contains information such as weekly self-study hours, attendance percentage, class participation, total score, and final grades. The goal is to explore relationships between these factors and academic performance using Python.
+This project analyzes a dataset of 1 million students' academic records to uncover patterns influencing academic performance and to predict student grades using machine learning. The project combines exploratory data analysis (EDA), feature engineering, data visualization, and supervised learning to understand and model student outcomes.
 
 ---
 
 ## Dataset
 
-- Source: [Kaggle - Student Performance Dataset](https://www.kaggle.com/kayhanh/student-performance-1-million)
-- Columns:
-  - `student_id` : Unique ID for each student
-  - `weekly_self_study_hours` : Hours spent in self-study per week
-  - `attendance_percentage` : Attendance in percentage
-  - `class_participation` : Score for class participation
-  - `total_score` : Total academic score
-  - `grade` : Letter grade (A, B, C, etc.)
+- **Source:** [Kaggle – Student Performance Dataset](https://www.kaggle.com/kayhanh/student-performance-1-million)
+- **Size:** 1,000,000 records
+
+### Columns
+- `student_id` – Unique identifier for each student  
+- `weekly_self_study_hours` – Hours spent on self-study per week  
+- `attendance_percentage` – Attendance rate (%)  
+- `class_participation` – Participation score  
+- `total_score` – Overall academic score  
+- `grade` – Final grade (A, B, C, D, F)
 
 ---
 
-## What I Did
+## Project Workflow
 
-1. **Data Loading and Exploration**
-   - Loaded dataset using Pandas.
-   - Checked the dataset shape, column names, and types using `.shape`, `.columns`, and `.info()`.
-   - Obtained statistical summary of numeric columns with `.describe()`.
-   - Checked for null values and duplicate rows.
+### 1. Exploratory Data Analysis (EDA)
+- Loaded and inspected the dataset using Pandas.
+- Analyzed dataset structure, data types, and statistical properties.
+- Checked for missing values and duplicate entries.
+- Explored grade distributions and performance trends.
 
-2. **Feature Engineering**
-   - Converted continuous numeric features into **categorical grades** for easier analysis:
-     - `attendance_percentage` → `attendance_grade`
-     - `weekly_self_study_hours` → `weekly_study_grade`
-     - `class_participation` → `class_participation_grade`
-   - Used `pd.cut()` with defined bins and labels (F–A) to create these categorical features.
+### 2. Feature Engineering
+- Converted continuous variables into categorical grades using binning:
+  - `attendance_percentage` → `attendance_grade`
+  - `weekly_self_study_hours` → `weekly_study_grade`
+  - `class_participation` → `class_participation_grade`
+- Enabled clearer categorical analysis and visualization.
 
-3. **Visualization**
-   - Plotted **distribution of grades**.
-   - Plotted **distribution of attendance, weekly study, and participation grades**.
-   - Used Seaborn and Matplotlib for clear visualizations.
-   - Optional extensions (for better insight):
-     - Boxplots/scatterplots showing relationships between features and grades.
-     - Correlation heatmaps to visualize how numeric features relate to total score.
+### 3. Data Visualization
+- Visualized grade distributions using count plots.
+- Analyzed distributions of attendance, weekly self-study, and class participation.
+- Used Matplotlib and Seaborn for clear and interpretable visualizations.
+
+### 4. Machine Learning – Grade Prediction
+- Framed grade prediction as a multi-class classification problem.
+- Selected features:
+  - Weekly self-study hours
+  - Attendance percentage
+  - Class participation
+- Encoded grades using `LabelEncoder`.
+- Split data into training and testing sets.
+- Trained a Random Forest classifier.
+- Evaluated model performance using accuracy score, classification report, and confusion matrix.
+
+### 5. Model Interpretation
+- Analyzed feature importance from the Random Forest model.
+- Found weekly self-study hours to be the most influential feature, followed by attendance percentage and class participation.
 
 ---
 
-## Tools Used
-
-- Python (Pandas, NumPy)
-- Data Visualization (Matplotlib, Seaborn)
-- Google Colab for development
+## Key Insights
+- Higher self-study hours strongly correlate with better academic performance.
+- Attendance plays a significant role in grade prediction.
+- Class participation has a comparatively smaller impact.
+- The model captures realistic academic performance patterns.
 
 ---
 
-## Insights
-
-- Most students are concentrated in grades B and A.
-- Higher attendance percentages correspond to higher academic grades.
-- Weekly self-study and class participation positively correlate with total score.
-- This analysis highlights the key factors contributing to academic success.
+## Tools & Technologies
+- Python  
+- Pandas, NumPy  
+- Matplotlib, Seaborn  
+- scikit-learn  
+- Google Colab  
 
 ---
 
 ## How to Run
-
-1. Clone or download the notebook.
-2. Ensure all required libraries are installed (`pandas`, `numpy`, `matplotlib`, `seaborn`).
-3. Open the notebook in Google Colab or Jupyter Notebook.
-4. Run all cells sequentially.
-
----
-
-## Next Steps / Improvements
-
-- Add advanced visualizations like pairplots or violin plots.
-- Perform predictive modeling to predict grades using features.
-- Include more datasets or merge with demographic data for richer analysis.
+1. Clone or download the repository.
+2. Open the notebook in Google Colab or Jupyter Notebook.
+3. Install required libraries if needed:
+   ```bash
+   pip install pandas numpy matplotlib seaborn scikit-learn
